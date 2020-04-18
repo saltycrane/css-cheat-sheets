@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "next",
-    "render": "npm run tsc && node bin/render.js",
+    "render": "npm run tsc && node dist/render.js",
     "tsc": "tsc --project tsconfig.staticrender.json"
   },
   "prettier": {

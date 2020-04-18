@@ -6,6 +6,8 @@ import ReactDOMServer from "react-dom/server";
 
 import CssWidthCheatSheet from "./CssWidthCheatSheet";
 
+render();
+
 function render() {
   let outputFile = "./output.html";
   let html = ReactDOMServer.renderToStaticMarkup(<CssWidthCheatSheet />);
@@ -14,8 +16,6 @@ function render() {
   fs.writeFileSync(outputFile, prettyHtml);
   console.log(`Wrote ${outputFile}`);
 }
-
-export default render;
 
 export function makeRequiredDir(filepath: string) {
   let dir = path.dirname(filepath);
