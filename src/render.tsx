@@ -4,20 +4,18 @@ import prettier from "prettier";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 
-import CssWidthCheatSheet from "./CssWidthCheatSheet";
-
-render();
-
-function render() {
-  let outputFile = "./output.html";
-  let html = ReactDOMServer.renderToStaticMarkup(<CssWidthCheatSheet />);
+export default function render(
+  RootElement: React.ReactElement,
+  outputFile: string
+) {
+  let html = ReactDOMServer.renderToStaticMarkup(RootElement);
   let prettyHtml = prettier.format(html, { parser: "html" });
   makeRequiredDir(outputFile);
   fs.writeFileSync(outputFile, prettyHtml);
   console.log(`Wrote ${outputFile}`);
 }
 
-export function makeRequiredDir(filepath: string) {
+function makeRequiredDir(filepath: string) {
   let dir = path.dirname(filepath);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);

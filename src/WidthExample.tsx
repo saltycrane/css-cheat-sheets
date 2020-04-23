@@ -1,16 +1,18 @@
 import React from "react";
 
 import CodeBlock from "./CodeBlock";
+import CodeRow from "./CodeRow";
 import LabelOverlay from "./LabelOverlay";
-import Row from "./Row";
 import Spacer from "./Spacer";
 import { colors } from "./constants";
 import dedent from "./dedent";
 
-export let examplePageCss = `
+export let widthExamplePageCss = `
   .cntr {
+    background-color: ${colors.white};
     border: 1px solid ${colors.gray400};
-    padding: 2rem;
+    padding: 20px;
+    height: 160px;
   }
   .cont {
     background-color: ${colors.white};
@@ -21,7 +23,7 @@ export let examplePageCss = `
   }
   .expl {
     border: 1px solid ${colors.blue};
-    padding: 2rem;
+    padding: 20px;
   }
 `;
 
@@ -34,13 +36,18 @@ type TProps = {
   id: string;
 };
 
-export default function Example(props: TProps) {
+export default function WidthExample(props: TProps) {
   let { dedentSpaces = 8, id } = props;
   let containerCss = `#container-${id} {${dedent(
     props.containerCss,
-    dedentSpaces,
+    dedentSpaces
   )}}`;
   let exampleCss = `#example-${id} {${dedent(props.exampleCss, dedentSpaces)}}`;
+  let markup = `<div id="container-${id}">
+  <div id="example-${id}">
+    <div class="content" />
+  </div>
+</div>`;
 
   return (
     <div>
@@ -61,10 +68,14 @@ export default function Example(props: TProps) {
         </div>
       </LabelOverlay>
       <Spacer y={3} />
-      <Row>
-        <CodeBlock>{containerCss}</CodeBlock>
-        <CodeBlock>{exampleCss}</CodeBlock>
-      </Row>
+      <CodeBlock label="HTML" width={600}>
+        {markup}
+      </CodeBlock>
+      <Spacer y={3} />
+      <CodeRow>
+        <CodeBlock label="CSS">{containerCss}</CodeBlock>
+        <CodeBlock label="CSS">{exampleCss}</CodeBlock>
+      </CodeRow>
       <Spacer y={5} />
     </div>
   );

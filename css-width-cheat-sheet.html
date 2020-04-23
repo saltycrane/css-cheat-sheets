@@ -1,0 +1,857 @@
+<div id="cwcs">
+  <style>
+    #cwcs a {
+      border-bottom: 1px dotted;
+    }
+    #cwcs ul {
+      margin-left: 10px;
+    }
+
+    #cwcs .code-block {
+      border-radius: 0;
+      margin: 0;
+      padding: 5px 10px;
+      position: relative;
+    }
+    #cwcs .code-label {
+      background-color: #fff;
+      border-radius: 4px;
+      color: #6c757d;
+      padding: 2px 5px 0 5px;
+      position: absolute;
+      right: 4px;
+      top: 2px;
+    }
+
+    #cwcs .code-row {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: 1fr 1fr;
+      width: 600px;
+    }
+
+    .label-overlay {
+      position: relative;
+    }
+    .label-cntr {
+      background-color: #fff;
+      color: #6c757d;
+      left: 5px;
+      padding: 0 2.5px;
+      position: absolute;
+      top: -11px;
+    }
+    .label-expl {
+      background-color: #fff;
+      color: #0d6efd;
+      left: 26px;
+      padding: 0 2.5px;
+      position: absolute;
+      top: 11px;
+    }
+    .label-cont {
+      background-color: #fff;
+      color: #6c757d;
+      left: 47px;
+      padding: 0 2.5px;
+      position: absolute;
+      top: 31px;
+    }
+
+    .cntr {
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      padding: 20px;
+      height: 160px;
+    }
+    .cont {
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      display: block;
+      height: 60px;
+      width: 120px;
+    }
+    .expl {
+      border: 1px solid #0d6efd;
+      padding: 20px;
+    }
+  </style>
+  <p>
+    In CSS, I&#x27;m often confused about when an element expands to the width
+    of its container and when it adjusts to the width of its content. I made
+    some experiments to test the CSS behavior in various conditions. The script
+    to generate the experiments is
+    <a href="https://github.com/saltycrane/css-width-cheat-sheet">on github</a>
+    and the results are shown below.
+  </p>
+  <div>
+    By default, elements expand to the <b>width of their container</b> when they
+    are
+  </div>
+  <ul>
+    <li><a href="#101">block elements in block containers</a></li>
+    <li>elements in <a href="#102">flex column containers</a></li>
+    <li>elements in <a href="#103">grid containers</a></li>
+  </ul>
+  <div>
+    By default, elements adjust to <b>width of their content</b> when they are
+  </div>
+  <ul>
+    <li><a href="#201">inline elements in block containers</a></li>
+    <li>elements in <a href="#202">flex row containers</a></li>
+    <li>elements that are <a href="#203">absolutely positioned</a></li>
+    <li>elements that are <a href="#204">floated</a></li>
+  </ul>
+  <div>
+    Some elements can be made to expand to the
+    <b>width of their container</b> by
+  </div>
+  <ul>
+    <li>
+      <a href="#104">setting their width</a> <a href="#105">to 100%</a> (tip: if
+      there are intermediate elements, their width may need to be set to 100%
+      also)
+    </li>
+    <li>
+      <a href="#106">setting <code>flex-grow</code></a> for flex row containers
+    </li>
+  </ul>
+  <div>
+    Some elements can be made to adjust to the <b>width of their content</b> by
+  </div>
+  <ul>
+    <li>
+      <a href="#205">using <code>fit-content</code></a> (not supported by IE)
+    </li>
+    <li>
+      <a href="#206">setting <code>align-items</code></a> to something other
+      than <code>stretch</code> for elements in flex column containers
+    </li>
+    <li>
+      <a href="#207">setting <code>justify-items</code></a>
+      <a href="#208">or <code>justify-self</code></a> to something other than
+      <code>stretch</code> for elements in grid containers
+    </li>
+  </ul>
+  <h4 id="see-also">See also</h4>
+  <div>
+    <ul class="list-inline">
+      <li>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display"
+          >MDN documentation on display</a
+        >
+      </li>
+      <li>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width"
+          >MDN documentation on width</a
+        >
+      </li>
+      <li>
+        <a href="https://www.w3.org/TR/css-display-3/#the-display-properties"
+          >CSS specification on display</a
+        >
+      </li>
+      <li>
+        <a href="https://www.w3.org/TR/css-sizing-3/"
+          >CSS specification on sizing</a
+        >
+      </li>
+    </ul>
+  </div>
+  <h4 id="by-container">Examples - width determined by container</h4>
+  <div>
+    <div>
+      <b id="101">Block elements</b> - block elements expand to the width of
+      their container by default
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-101 {
+          display: block; /* default */
+          width: 600px;
+        }
+        #example-101 {
+          display: block; /* default */
+        }
+      </style>
+      <div class="cntr" id="container-101">
+        <div class="expl" id="example-101"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-101</div>
+      <div class="label-expl">#example-101</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-101&quot;&gt;
+  &lt;div id=&quot;example-101&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-101 {
+  display: block;  /* default */
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-101 {
+  display: block;  /* default */
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="102">Flex column container</b> - if the container is a flex column,
+      then elements will expand to the width of the container by default
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-102 {
+          display: flex;
+          align-items: normal; /* default - behaves like stretch in this case */
+          flex-direction: column;
+          width: 600px;
+        }
+        #example-102 {
+          display: block; /* default */
+        }
+      </style>
+      <div class="cntr" id="container-102">
+        <div class="expl" id="example-102"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-102</div>
+      <div class="label-expl">#example-102</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-102&quot;&gt;
+  &lt;div id=&quot;example-102&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-102 {
+  display: flex;
+  align-items: normal;  /* default - behaves like stretch in this case */
+  flex-direction: column;
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-102 {
+  display: block;  /* default */
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="103">Grid container</b> - elements will expand to the width of a
+      grid container by default
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-103 {
+          display: grid;
+          justify-items: normal; /* default - behaves like stretch in this case */
+          width: 600px;
+        }
+        #example-103 {
+          display: block; /* default */
+        }
+      </style>
+      <div class="cntr" id="container-103">
+        <div class="expl" id="example-103"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-103</div>
+      <div class="label-expl">#example-103</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-103&quot;&gt;
+  &lt;div id=&quot;example-103&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-103 {
+  display: grid;
+  justify-items: normal;  /* default - behaves like stretch in this case */
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-103 {
+  display: block;  /* default */
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="104">Inline elements, width 100%</b> - inline elements will expand
+      to the width of their container if width is set to 100%
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-104 {
+          display: block; /* default */
+          width: 600px;
+        }
+        #example-104 {
+          display: inline-block;
+          width: 100%;
+        }
+      </style>
+      <div class="cntr" id="container-104">
+        <div class="expl" id="example-104"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-104</div>
+      <div class="label-expl">#example-104</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-104&quot;&gt;
+  &lt;div id=&quot;example-104&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-104 {
+  display: block;  /* default */
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-104 {
+  display: inline-block;
+  width: 100%;
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="105">Flex row container, width: 100%</b> - by default, block
+      elements in a flex container will not expand to the width of the
+      container. Setting <code>width: 100%</code> will cause it to expand.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-105 {
+          display: flex;
+          flex-direction: row; /* default */
+          justify-content: normal; /* default - behaves as flex-start in this case */
+          width: 600px;
+        }
+        #example-105 {
+          display: block; /* default */
+          width: 100%;
+        }
+      </style>
+      <div class="cntr" id="container-105">
+        <div class="expl" id="example-105"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-105</div>
+      <div class="label-expl">#example-105</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-105&quot;&gt;
+  &lt;div id=&quot;example-105&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-105 {
+  display: flex;
+  flex-direction: row;  /* default */
+  justify-content: normal;  /* default - behaves as flex-start in this case */
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-105 {
+  display: block;  /* default */
+  width: 100%;
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="106">Flex row container, flex-grow: 1</b> - by default, block
+      elements in a flex container will not expand to the width of the
+      container. But setting <code>flex-grow: 1</code> will cause it to expand.
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow"
+        >MDN docs on <code>flex-grow</code></a
+      >.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-106 {
+          display: flex;
+          flex-direction: row; /* default */
+          justify-content: normal; /* default - behaves as flex-start in this case */
+          width: 600px;
+        }
+        #example-106 {
+          display: block; /* default */
+          flex-grow: 1;
+        }
+      </style>
+      <div class="cntr" id="container-106">
+        <div class="expl" id="example-106"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-106</div>
+      <div class="label-expl">#example-106</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-106&quot;&gt;
+  &lt;div id=&quot;example-106&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-106 {
+  display: flex;
+  flex-direction: row;  /* default */
+  justify-content: normal;  /* default - behaves as flex-start in this case */
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-106 {
+  display: block;  /* default */
+  flex-grow: 1;
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <h4 id="by-content">Examples - width determined by content</h4>
+  <div>
+    <div>
+      <b id="201">Inline elements</b> - inline elements adjust to the width of
+      their content by default
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-201 {
+          display: block; /* default */
+          width: 600px;
+        }
+        #example-201 {
+          display: inline-block;
+        }
+      </style>
+      <div class="cntr" id="container-201">
+        <div class="expl" id="example-201"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-201</div>
+      <div class="label-expl">#example-201</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-201&quot;&gt;
+  &lt;div id=&quot;example-201&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-201 {
+  display: block;  /* default */
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-201 {
+  display: inline-block;
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="202">Flex row container</b> - if the container uses
+      <code>display: flex</code>, the element will set its width to match its
+      content even for block elements.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-202 {
+          display: flex;
+          flex-direction: row; /* default */
+          justify-content: normal; /* default - behaves as flex-start in this case */
+          width: 600px;
+        }
+        #example-202 {
+          display: block; /* default */
+        }
+      </style>
+      <div class="cntr" id="container-202">
+        <div class="expl" id="example-202"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-202</div>
+      <div class="label-expl">#example-202</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-202&quot;&gt;
+  &lt;div id=&quot;example-202&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-202 {
+  display: flex;
+  flex-direction: row;  /* default */
+  justify-content: normal;  /* default - behaves as flex-start in this case */
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-202 {
+  display: block;  /* default */
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="203">Absolutely positioned</b> - when
+      <code>position: absolute</code> is used, the element will adjust to the
+      width of its content.
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#Absolute_positioning"
+        >MDN docs on <code>position: absolute</code></a
+      >.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-203 {
+          display: block; /* default */
+          position: relative;
+          width: 600px;
+        }
+        #example-203 {
+          display: block; /* default */
+          position: absolute;
+        }
+      </style>
+      <div class="cntr" id="container-203">
+        <div class="expl" id="example-203"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-203</div>
+      <div class="label-expl">#example-203</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-203&quot;&gt;
+  &lt;div id=&quot;example-203&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-203 {
+  display: block;  /* default */
+  position: relative;
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-203 {
+  display: block;  /* default */
+  position: absolute;
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="204">Floated elements</b> - elements that set
+      <code>float</code> adjust to the width of their content.
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/float"
+        >MDN docs on <code>float</code></a
+      >.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-204 {
+          display: block; /* default */
+          width: 600px;
+        }
+        #example-204 {
+          display: block; /* default */
+          float: left;
+        }
+      </style>
+      <div class="cntr" id="container-204">
+        <div class="expl" id="example-204"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-204</div>
+      <div class="label-expl">#example-204</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-204&quot;&gt;
+  &lt;div id=&quot;example-204&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-204 {
+  display: block;  /* default */
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-204 {
+  display: block;  /* default */
+  float: left;
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="205">Block elements, using <code>fit-content</code></b> - block
+      elements adjust to the width of their container by default but can use
+      <code>fit-content</code> to set their width to match that of their
+      content.
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width"
+        >MDN docs on <code>width</code></a
+      >. NOTE: <code>fit-content</code> is
+      <a href="https://caniuse.com/#feat=mdn-css_properties_width_fit-content"
+        >not supported by IE</a
+      >.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-205 {
+          display: block; /* default */
+          width: 600px;
+        }
+        #example-205 {
+          display: block; /* default */
+          width: fit-content;
+        }
+      </style>
+      <div class="cntr" id="container-205">
+        <div class="expl" id="example-205"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-205</div>
+      <div class="label-expl">#example-205</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-205&quot;&gt;
+  &lt;div id=&quot;example-205&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-205 {
+  display: block;  /* default */
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-205 {
+  display: block;  /* default */
+  width: fit-content;
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="206">Flex column container with <code>align-items</code> set</b> -
+      elements in a flex column container expand to the width of the container
+      by default, but setting <code>align-items</code> to something other than
+      <code>stretch</code> (e.g. <code>flex-start</code>), causes the element to
+      adjust to the width of its content.
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items"
+        >MDN docs on <code>align-items</code></a
+      >.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-206 {
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 600px;
+        }
+        #example-206 {
+          display: block; /* default */
+        }
+      </style>
+      <div class="cntr" id="container-206">
+        <div class="expl" id="example-206"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-206</div>
+      <div class="label-expl">#example-206</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-206&quot;&gt;
+  &lt;div id=&quot;example-206&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-206 {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-206 {
+  display: block;  /* default */
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="207">Grid container, with <code>justify-items</code> set</b> - if a
+      grid container sets <code>justify-items</code> to something other than
+      <code>stretch</code> (the default), then the element will set its width to
+      match its content by default.
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items"
+        >MDN docs on <code>justify-items</code></a
+      >.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-207 {
+          display: grid;
+          justify-items: start;
+          width: 600px;
+        }
+        #example-207 {
+          display: block; /* default */
+        }
+      </style>
+      <div class="cntr" id="container-207">
+        <div class="expl" id="example-207"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-207</div>
+      <div class="label-expl">#example-207</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-207&quot;&gt;
+  &lt;div id=&quot;example-207&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-207 {
+  display: grid;
+  justify-items: start;
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-207 {
+  display: block;  /* default */
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="208">Grid container, with <code>justify-self</code> set</b> - if an
+      element sets <code>justify-self</code> to something other than
+      <code>stretch</code> (the default), inside a grid container, it will set
+      its width to match its content by default.
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self"
+        >MDN docs on <code>justify-self</code></a
+      >.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="label-overlay">
+      <style>
+        #container-208 {
+          display: grid;
+          width: 600px;
+        }
+        #example-208 {
+          display: block; /* default */
+          justify-self: start;
+        }
+      </style>
+      <div class="cntr" id="container-208">
+        <div class="expl" id="example-208"><div class="cont"></div></div>
+      </div>
+      <div class="label-cntr">#container-208</div>
+      <div class="label-expl">#example-208</div>
+      <div class="label-cont">content</div>
+    </div>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <pre
+      class="code-block"
+      style="width: 600px;"
+    ><div class="code-label">HTML</div>&lt;div id=&quot;container-208&quot;&gt;
+  &lt;div id=&quot;example-208&quot;&gt;
+    &lt;div class=&quot;content&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div style="height: 10px; min-height: 10px;"></div>
+    <div class="code-row">
+      <pre class="code-block"><div class="code-label">CSS</div>#container-208 {
+  display: grid;
+  width: 600px;
+}</pre>
+      <pre class="code-block"><div class="code-label">CSS</div>#example-208 {
+  display: block;  /* default */
+  justify-self: start;
+}</pre>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+</div>

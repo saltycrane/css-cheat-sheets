@@ -26,9 +26,9 @@ export const colors = {
 
 export const spacing: Record<TSize, string> = {
   0: "0",
-  1: "0.25rem",
-  2: "0.5rem",
-  3: "1rem",
-  4: "1.5rem",
-  5: "3rem",
+  1: "2.5px",
+  2: "5px",
+  3: "10px",
+  4: "15px",
+  5: "30px",
 };

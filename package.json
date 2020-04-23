@@ -1,19 +1,16 @@
 {
   "scripts": {
     "dev": "next",
-    "render": "npm run tsc && node dist/render.js",
+    "render": "npm run tsc && node dist/render-width-cheat-sheet.js",
     "tsc": "tsc --project tsconfig.staticrender.json"
   },
-  "prettier": {
-    "trailingComma": "all"
-  },
   "dependencies": {
-    "@types/node": "^13.11.1",
+    "@types/node": "^13.13.2",
     "@types/prettier": "^2.0.0",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "next": "^9.3.5",
-    "prettier": "^2.0.4",
+    "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "typescript": "^3.8.3"

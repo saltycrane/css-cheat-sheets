@@ -11,7 +11,7 @@ $ npm install
 $ npm run render
 ```
 
-View ./output.html file
+View `./css-width-cheat-sheet.html` file
 
 ## Local development
 

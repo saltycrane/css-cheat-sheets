@@ -9,26 +9,26 @@ export let labelOverlayPageCss = `
   .label-cntr {
     background-color: ${colors.white};
     color: ${colors.gray600};
-    left: 0.5rem;
-    padding: 0 0.25rem;
+    left: 5px;
+    padding: 0 2.5px;
     position: absolute;
-    top: calc(-1rem + 1px);
+    top: -11px;
   }
   .label-expl {
     background-color: ${colors.white};
     color: ${colors.blue};
-    left: calc(2.5rem + 1px);
-    padding: 0 0.25rem;
+    left: 26px;
+    padding: 0 2.5px;
     position: absolute;
-    top: calc(1rem + 2px);
+    top: 11px;
   }
   .label-cont {
     background-color: ${colors.white};
     color: ${colors.gray600};
-    left: calc(4.5rem + 2px);
-    padding: 0 0.25rem;
+    left: 47px;
+    padding: 0 2.5px;
     position: absolute;
-    top: calc(3rem + 3px);
+    top: 31px;
   }
 `;
 
