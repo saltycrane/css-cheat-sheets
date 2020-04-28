@@ -1,0 +1,247 @@
+<div id="cwcs">
+  <style>
+    #cwcs a {
+      border-bottom: 1px dotted;
+    }
+    #cwcs ul {
+      margin-left: 10px;
+    }
+    #cwcs .ex {
+      border: 1px solid #ccc;
+      height: 120px;
+      padding: 5px;
+      width: 120px;
+    }
+    #cwcs .code-block {
+      border-radius: 0;
+      margin: 0;
+      padding: 5px 10px;
+      position: relative;
+    }
+    #cwcs .code-label {
+      background-color: #fff;
+      border-radius: 4px;
+      color: #6c757d;
+      padding: 2px 5px 0 5px;
+      position: absolute;
+      right: 4px;
+      top: 2px;
+    }
+
+    #cwcs .flex-row {
+      align-items: flex-start;
+      display: flex;
+    }
+
+    .label-overlay {
+      position: relative;
+    }
+    .label-cntr {
+      background-color: #fff;
+      color: #6c757d;
+      left: 5px;
+      padding: 0 2.5px;
+      position: absolute;
+      top: -11px;
+    }
+    .label-expl {
+      background-color: #fff;
+      color: #0d6efd;
+      left: 26px;
+      padding: 0 2.5px;
+      position: absolute;
+      top: 11px;
+    }
+    .label-cont {
+      background-color: #fff;
+      color: #6c757d;
+      left: 47px;
+      padding: 0 2.5px;
+      position: absolute;
+      top: 31px;
+    }
+
+    #cwcs .stack {
+      display: grid;
+      grid-gap: 10px;
+      justify-items: start;
+    }
+  </style>
+  <h4>Shared CSS</h4>
+  <div class="stack">
+    <pre class="code-block"><div class="code-label">CSS</div>.ex {
+    border: 1px solid #ccc;
+    height: 120px;
+    padding: 5px;
+    width: 120px;
+}
+</pre>
+  </div>
+  <div style="height: 15px; min-height: 15px;"></div>
+  <h4>
+    Examples of permutations of <code>writing-mode</code> and
+    <code>text-orientation</code>
+  </h4>
+  <div>
+    <div id="0a"><b>horizontal-tb, mixed</b></div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <style>
+      #example-0a {
+        writing-mode: horizontal-tb;
+        text-orientation: mixed;
+      }
+    </style>
+    <div class="flex-row">
+      <div class="ex" id="example-0a">Some example text</div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div class=&quot;ex&quot; id=&quot;example-0a&quot;&gt;      
+  Some example text
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#example-0a {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+}
+</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div id="0b"><b>horizontal-tb, upright</b></div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <style>
+      #example-0b {
+        writing-mode: horizontal-tb;
+        text-orientation: upright;
+      }
+    </style>
+    <div class="flex-row">
+      <div class="ex" id="example-0b">Some example text</div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div class=&quot;ex&quot; id=&quot;example-0b&quot;&gt;      
+  Some example text
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#example-0b {
+  writing-mode: horizontal-tb;
+  text-orientation: upright;
+}
+</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div id="1a"><b>vertical-rl, mixed</b></div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <style>
+      #example-1a {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+      }
+    </style>
+    <div class="flex-row">
+      <div class="ex" id="example-1a">Some example text</div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div class=&quot;ex&quot; id=&quot;example-1a&quot;&gt;      
+  Some example text
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#example-1a {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div id="1b"><b>vertical-rl, upright</b></div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <style>
+      #example-1b {
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+      }
+    </style>
+    <div class="flex-row">
+      <div class="ex" id="example-1b">Some example text</div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div class=&quot;ex&quot; id=&quot;example-1b&quot;&gt;      
+  Some example text
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#example-1b {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div id="2a"><b>vertical-lr, mixed</b></div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <style>
+      #example-2a {
+        writing-mode: vertical-lr;
+        text-orientation: mixed;
+      }
+    </style>
+    <div class="flex-row">
+      <div class="ex" id="example-2a">Some example text</div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div class=&quot;ex&quot; id=&quot;example-2a&quot;&gt;      
+  Some example text
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#example-2a {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+}
+</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div id="2b"><b>vertical-lr, upright</b></div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <style>
+      #example-2b {
+        writing-mode: vertical-lr;
+        text-orientation: upright;
+      }
+    </style>
+    <div class="flex-row">
+      <div class="ex" id="example-2b">Some example text</div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div class=&quot;ex&quot; id=&quot;example-2b&quot;&gt;      
+  Some example text
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#example-2b {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+}
+</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+</div>

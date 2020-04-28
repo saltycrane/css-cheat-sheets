@@ -2,10 +2,11 @@ import React from "react";
 
 export let codeRowCss = `
   #cwcs .code-row {
+    align-items: start;
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 1fr 1fr;
-    width: 600px;
+    grid-template-columns: auto 1fr;
+    justify-items: start;
   }
 `;
 

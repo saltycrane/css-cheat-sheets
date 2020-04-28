@@ -1,0 +1,1749 @@
+<div id="cwcs">
+  <style>
+    #cwcs a {
+      border-bottom: 1px dotted;
+    }
+    #cwcs ul {
+      margin-left: 10px;
+    }
+
+    #cwcs .code-block {
+      border-radius: 0;
+      margin: 0;
+      padding: 5px 10px;
+      position: relative;
+    }
+    #cwcs .code-label {
+      background-color: #fff;
+      border-radius: 4px;
+      color: #6c757d;
+      padding: 2px 5px 0 5px;
+      position: absolute;
+      right: 4px;
+      top: 2px;
+    }
+
+    #cwcs .flex-row {
+      align-items: flex-start;
+      display: flex;
+    }
+
+    .label-overlay {
+      position: relative;
+    }
+    .label-cntr {
+      background-color: #fff;
+      color: #6c757d;
+      left: 5px;
+      padding: 0 2.5px;
+      position: absolute;
+      top: -11px;
+    }
+    .label-expl {
+      background-color: #fff;
+      color: #0d6efd;
+      left: 26px;
+      padding: 0 2.5px;
+      position: absolute;
+      top: 11px;
+    }
+    .label-cont {
+      background-color: #fff;
+      color: #6c757d;
+      left: 47px;
+      padding: 0 2.5px;
+      position: absolute;
+      top: 31px;
+    }
+
+    .cntr {
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      padding: 20px;
+      width: 200px;
+    }
+    .cont {
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      display: block;
+      height: 20px;
+      width: 100px;
+    }
+    .expl {
+      background-color: #fff;
+      border: 1px solid #0d6efd;
+      padding: 20px;
+    }
+
+    #cwcs .stack {
+      display: grid;
+      grid-gap: 10px;
+      justify-items: start;
+    }
+  </style>
+  <p>
+    Here are some CSS experiments to test when elements adjust to the height of
+    their container and when they adjust to the height of their content. The
+    script to generate the experiments is
+    <a href="https://github.com/saltycrane/css-cheat-sheets">on github</a> and
+    the results are shown below. See also my companion page on
+    <a href="/blog/2020/04/how-width-set-css/">CSS width</a>.
+  </p>
+  <div>
+    By default, elements adjust to <b>height of their container</b> when they
+    are
+  </div>
+  <ul>
+    <li>elements in <a href="#3a">flex row containers</a></li>
+    <li>elements in <a href="#5a">grid containers with short content</a></li>
+  </ul>
+  <div>
+    By default, elements adjust to the <b>height of their content</b> when they
+    are
+  </div>
+  <ul>
+    <li>elements in <a href="#1a">block containers</a></li>
+    <li>elements in <a href="#4a">flex column containers</a></li>
+    <li>elements in <a href="#5b">grid containers with tall content</a></li>
+    <li>elements that are <a href="#6a">absolutely positioned</a></li>
+    <li>elements that are <a href="#7a">floated</a></li>
+  </ul>
+  <div>
+    Some elements can be made to adjust to the
+    <b>height of their container</b> by
+  </div>
+  <ul>
+    <li>
+      setting <code>height</code> to <code>100%</code> for elements in
+      <a href="#1c">block containers</a>, elements in
+      <a href="#4c">flex column containers</a>,
+      <a href="#6c">absolutely positioned elements</a>, and
+      <a href="#7c">floated elements</a>. (Note: it does not have an effect for
+      elements in <a href="#5c">grid containers</a>.)
+    </li>
+    <li>
+      setting <code>flex-grow</code> for elements in
+      <a href="#4e">flex column containers</a> where content is shorter than the
+      container. (Note: it adjusts to the height of the content if the
+      <a href="#4f">content is tailler than the container</a>.)
+    </li>
+    <li>
+      setting <code>overflow</code> for elements in
+      <a href="#5d">grid containers with tall content</a>
+    </li>
+  </ul>
+  <div>
+    Some elements can be made to adjust to the <b>height of their content</b> by
+  </div>
+  <ul>
+    <li>
+      setting <code>align-items</code> to something other than
+      <code>stretch</code> for elements in
+      <a href="#3c">flex row containers</a> and elements in
+      <a href="#5e">grid containers</a>
+    </li>
+  </ul>
+  <div>
+    Some miscellaneous cases:
+    <ul>
+      <li>
+        for elements in <a href="#5d">grid containers</a>, setting
+        <code>overflow</code> limits an element&#x27;s height to the height of
+        its container for tall content
+      </li>
+      <li>
+        <a href="#4f">flex column containers with <code>flex-grow</code> set</a>
+        expand to the height of their content for tall content
+      </li>
+      <li>
+        <a href="#5c">elements in grid containers</a> setting
+        <code>height</code> to <code>100%</code> are NOT limited by the height
+        of their container
+      </li>
+      <li>
+        setting <code>overflow</code> has no effect for
+        <a href="#5g">elements in grid containers</a> when
+        <code>align-items</code> is set
+      </li>
+    </ul>
+  </div>
+  <h4 id="see-also">See also</h4>
+  <div>
+    <ul class="list-inline">
+      <li>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display"
+          >MDN documentation on display</a
+        >
+      </li>
+      <li>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/height"
+          >MDN documentation on height</a
+        >
+      </li>
+      <li>
+        <a href="https://www.w3.org/TR/css-display-3/#the-display-properties"
+          >CSS specification on display</a
+        >
+      </li>
+      <li>
+        <a href="https://www.w3.org/TR/css-sizing-3/"
+          >CSS specification on sizing</a
+        >
+      </li>
+    </ul>
+  </div>
+  <h4 id="block">Block containers</h4>
+  <div>
+    <div>
+      <b id="1a">Block containers</b> - elements in block containers adjust to
+      the <b>height of their content</b> by default
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-1a {
+            display: block; /* default */
+            height: 400px;
+          }
+          #example-1a {
+          }
+          #content-1a {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-1a">
+          <div class="expl" id="example-1a">
+            <div class="cont" id="content-1a"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-1a</div>
+        <div class="label-expl">#example-1a</div>
+        <div class="label-cont">#content-1a</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-1a&quot;&gt;
+  &lt;div id=&quot;example-1a&quot;&gt;
+    &lt;div id=&quot;content-1a&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-1a {
+  display: block;  /* default */
+  height: 400px;
+}
+#example-1a {}
+#content-1a {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 80px;">
+    <div>
+      <b id="1b">Block containers, tall content</b> - elements in block
+      containers adjust to the <b>height of their content</b> even when the
+      content is taller than the container
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-1b {
+            display: block; /* default */
+            height: 400px;
+          }
+          #example-1b {
+          }
+          #content-1b {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-1b">
+          <div class="expl" id="example-1b">
+            <div class="cont" id="content-1b"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-1b</div>
+        <div class="label-expl">#example-1b</div>
+        <div class="label-cont">#content-1b</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-1b&quot;&gt;
+  &lt;div id=&quot;example-1b&quot;&gt;
+    &lt;div id=&quot;content-1b&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-1b {
+  display: block;  /* default */
+  height: 400px;
+}
+#example-1b {}
+#content-1b {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="1c">Block elements, height 100%</b> - block elements expand to the
+      <b>height of their container</b> if height is set to 100%
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-1c {
+            display: block; /* default */
+            height: 400px;
+          }
+          #example-1c {
+            height: 100%;
+          }
+          #content-1c {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-1c">
+          <div class="expl" id="example-1c">
+            <div class="cont" id="content-1c"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-1c</div>
+        <div class="label-expl">#example-1c</div>
+        <div class="label-cont">#content-1c</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-1c&quot;&gt;
+  &lt;div id=&quot;example-1c&quot;&gt;
+    &lt;div id=&quot;content-1c&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-1c {
+  display: block;  /* default */
+  height: 400px;
+}
+#example-1c {
+  height: 100%;
+}
+#content-1c {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 60px;">
+    <div>
+      <b id="1d">Block elements, tall content, height 100%</b> - block elements
+      contract to the <b>height of their container</b> if height is set to 100%
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-1d {
+            display: block; /* default */
+            height: 400px;
+          }
+          #example-1d {
+            height: 100%;
+          }
+          #content-1d {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-1d">
+          <div class="expl" id="example-1d">
+            <div class="cont" id="content-1d"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-1d</div>
+        <div class="label-expl">#example-1d</div>
+        <div class="label-cont">#content-1d</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-1d&quot;&gt;
+  &lt;div id=&quot;example-1d&quot;&gt;
+    &lt;div id=&quot;content-1d&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-1d {
+  display: block;  /* default */
+  height: 400px;
+}
+#example-1d {
+  height: 100%;
+}
+#content-1d {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <h4 id="flex-row">Flex row containers</h4>
+  <div>
+    <div>
+      <b id="3a">Flex row container</b> - elements in flex row containers expand
+      to the <b>height of their container</b> by default
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-3a {
+            align-items: normal; /* default - behaves as stretch in this case */
+            display: flex;
+            flex-direction: row; /* default */
+            height: 400px;
+          }
+          #example-3a {
+          }
+          #content-3a {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-3a">
+          <div class="expl" id="example-3a">
+            <div class="cont" id="content-3a"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-3a</div>
+        <div class="label-expl">#example-3a</div>
+        <div class="label-cont">#content-3a</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-3a&quot;&gt;
+  &lt;div id=&quot;example-3a&quot;&gt;
+    &lt;div id=&quot;content-3a&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-3a {
+  align-items: normal;  /* default - behaves as stretch in this case */
+  display: flex;
+  flex-direction: row;  /* default */
+  height: 400px;
+}
+#example-3a {}
+#content-3a {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 60px;">
+    <div>
+      <b id="3b">Flex row container, tall content</b> - elements in flex row
+      containers contract to the <b>height of their container</b> by default
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-3b {
+            align-items: normal; /* default - behaves as stretch in this case */
+            display: flex;
+            flex-direction: row; /* default */
+            height: 400px;
+          }
+          #example-3b {
+          }
+          #content-3b {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-3b">
+          <div class="expl" id="example-3b">
+            <div class="cont" id="content-3b"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-3b</div>
+        <div class="label-expl">#example-3b</div>
+        <div class="label-cont">#content-3b</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-3b&quot;&gt;
+  &lt;div id=&quot;example-3b&quot;&gt;
+    &lt;div id=&quot;content-3b&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-3b {
+  align-items: normal;  /* default - behaves as stretch in this case */
+  display: flex;
+  flex-direction: row;  /* default */
+  height: 400px;
+}
+#example-3b {}
+#content-3b {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="3c">Flex row container, align-items set</b> - elements in flex row
+      containers adjust to the <b>height of their content</b> if
+      <code>align-items</code> is set to something other than
+      <code>stretch</code>
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-3c {
+            align-items: flex-start;
+            display: flex;
+            flex-direction: row; /* default */
+            height: 400px;
+          }
+          #example-3c {
+          }
+          #content-3c {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-3c">
+          <div class="expl" id="example-3c">
+            <div class="cont" id="content-3c"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-3c</div>
+        <div class="label-expl">#example-3c</div>
+        <div class="label-cont">#content-3c</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-3c&quot;&gt;
+  &lt;div id=&quot;example-3c&quot;&gt;
+    &lt;div id=&quot;content-3c&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-3c {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;  /* default */
+  height: 400px;
+}
+#example-3c {}
+#content-3c {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 80px;">
+    <div>
+      <b id="3d">Flex row container, align-items set, tall content</b> -
+      elements in flex row containers adjust to the
+      <b>height of their content</b> if <code>align-items</code> is set to
+      something other than <code>stretch</code>
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-3d {
+            align-items: flex-start;
+            display: flex;
+            flex-direction: row; /* default */
+            height: 400px;
+          }
+          #example-3d {
+          }
+          #content-3d {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-3d">
+          <div class="expl" id="example-3d">
+            <div class="cont" id="content-3d"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-3d</div>
+        <div class="label-expl">#example-3d</div>
+        <div class="label-cont">#content-3d</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-3d&quot;&gt;
+  &lt;div id=&quot;example-3d&quot;&gt;
+    &lt;div id=&quot;content-3d&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-3d {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;  /* default */
+  height: 400px;
+}
+#example-3d {}
+#content-3d {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <h4 id="flex-column">Flex column containers</h4>
+  <div>
+    <div>
+      <b id="4a">Flex column container</b> - elements in flex columns containers
+      <b>adjust to the height</b> of the content by default
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-4a {
+            display: flex;
+            flex-direction: column;
+            justify-content: normal; /* default */
+            height: 400px;
+          }
+          #example-4a {
+          }
+          #content-4a {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-4a">
+          <div class="expl" id="example-4a">
+            <div class="cont" id="content-4a"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-4a</div>
+        <div class="label-expl">#example-4a</div>
+        <div class="label-cont">#content-4a</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-4a&quot;&gt;
+  &lt;div id=&quot;example-4a&quot;&gt;
+    &lt;div id=&quot;content-4a&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-4a {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;  /* default */
+  height: 400px;
+}
+#example-4a {}
+#content-4a {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 80px;">
+    <div>
+      <b id="4b">Flex column container, tall content</b> - elements in flex
+      columns containers <b>adjust to the height</b> of their content even for
+      tall content
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-4b {
+            display: flex;
+            flex-direction: column;
+            justify-content: normal; /* default */
+            height: 400px;
+          }
+          #example-4b {
+          }
+          #content-4b {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-4b">
+          <div class="expl" id="example-4b">
+            <div class="cont" id="content-4b"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-4b</div>
+        <div class="label-expl">#example-4b</div>
+        <div class="label-cont">#content-4b</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-4b&quot;&gt;
+  &lt;div id=&quot;example-4b&quot;&gt;
+    &lt;div id=&quot;content-4b&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-4b {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;  /* default */
+  height: 400px;
+}
+#example-4b {}
+#content-4b {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="4c">Flex column container, height: 100%</b> - elements in flex
+      column containers expand to the <b>height of their container</b> if
+      <code>height</code> is set to <code>100%</code>
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-4c {
+            display: flex;
+            flex-direction: column;
+            justify-content: normal; /* default */
+            height: 400px;
+          }
+          #example-4c {
+            height: 100%;
+          }
+          #content-4c {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-4c">
+          <div class="expl" id="example-4c">
+            <div class="cont" id="content-4c"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-4c</div>
+        <div class="label-expl">#example-4c</div>
+        <div class="label-cont">#content-4c</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-4c&quot;&gt;
+  &lt;div id=&quot;example-4c&quot;&gt;
+    &lt;div id=&quot;content-4c&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-4c {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;  /* default */
+  height: 400px;
+}
+#example-4c {
+  height: 100%;
+}
+#content-4c {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 60px;">
+    <div>
+      <b id="4d">Flex column container, height: 100%, tall content</b> -
+      elements in flex column containers contract to the
+      <b>height of their container</b> if <code>height</code> is set to
+      <code>100%</code>
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-4d {
+            display: flex;
+            flex-direction: column;
+            justify-content: normal; /* default */
+            height: 400px;
+          }
+          #example-4d {
+            height: 100%;
+          }
+          #content-4d {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-4d">
+          <div class="expl" id="example-4d">
+            <div class="cont" id="content-4d"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-4d</div>
+        <div class="label-expl">#example-4d</div>
+        <div class="label-cont">#content-4d</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-4d&quot;&gt;
+  &lt;div id=&quot;example-4d&quot;&gt;
+    &lt;div id=&quot;content-4d&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-4d {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;  /* default */
+  height: 400px;
+}
+#example-4d {
+  height: 100%;
+}
+#content-4d {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="4e">Flex column container, flex-grow</b> - elements in flex column
+      containers expand to the <b>height of their container</b> when
+      <code>flex-grow</code> is set to <code>1</code>
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-4e {
+            display: flex;
+            flex-direction: column;
+            justify-content: normal; /* default */
+            height: 400px;
+          }
+          #example-4e {
+            flex-grow: 1;
+          }
+          #content-4e {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-4e">
+          <div class="expl" id="example-4e">
+            <div class="cont" id="content-4e"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-4e</div>
+        <div class="label-expl">#example-4e</div>
+        <div class="label-cont">#content-4e</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-4e&quot;&gt;
+  &lt;div id=&quot;example-4e&quot;&gt;
+    &lt;div id=&quot;content-4e&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-4e {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;  /* default */
+  height: 400px;
+}
+#example-4e {
+  flex-grow: 1;
+}
+#content-4e {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 80px;">
+    <div>
+      <b id="4f">Flex column container, flex-grow, tall content</b> - elements
+      in flex column containers expand to the
+      <b>height of their content</b> when <code>flex-grow</code> is set to
+      <code>1</code>
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-4f {
+            display: flex;
+            flex-direction: column;
+            justify-content: normal; /* default */
+            height: 400px;
+          }
+          #example-4f {
+            flex-grow: 1;
+          }
+          #content-4f {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-4f">
+          <div class="expl" id="example-4f">
+            <div class="cont" id="content-4f"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-4f</div>
+        <div class="label-expl">#example-4f</div>
+        <div class="label-cont">#content-4f</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-4f&quot;&gt;
+  &lt;div id=&quot;example-4f&quot;&gt;
+    &lt;div id=&quot;content-4f&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-4f {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;  /* default */
+  height: 400px;
+}
+#example-4f {
+  flex-grow: 1;
+}
+#content-4f {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <h4 id="grid">Grid containers</h4>
+  <div>
+    <div>
+      <b id="5a">Grid container</b> - elements in grid containers expand to the
+      <b>height of the container</b> by default
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-5a {
+            align-items: normal; /* default - behaves like stretch in this case */
+            display: grid;
+            height: 400px;
+          }
+          #example-5a {
+          }
+          #content-5a {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-5a">
+          <div class="expl" id="example-5a">
+            <div class="cont" id="content-5a"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-5a</div>
+        <div class="label-expl">#example-5a</div>
+        <div class="label-cont">#content-5a</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-5a&quot;&gt;
+  &lt;div id=&quot;example-5a&quot;&gt;
+    &lt;div id=&quot;content-5a&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-5a {
+  align-items: normal;  /* default - behaves like stretch in this case */
+  display: grid;
+  height: 400px;
+}
+#example-5a {}
+#content-5a {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 80px;">
+    <div>
+      <b id="5b">Grid container, tall content</b> - elements with tall content
+      in grid containers expand to the <b>height of the content</b>
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-5b {
+            align-items: normal; /* default - behaves like stretch in this case */
+            display: grid;
+            height: 400px;
+          }
+          #example-5b {
+          }
+          #content-5b {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-5b">
+          <div class="expl" id="example-5b">
+            <div class="cont" id="content-5b"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-5b</div>
+        <div class="label-expl">#example-5b</div>
+        <div class="label-cont">#content-5b</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-5b&quot;&gt;
+  &lt;div id=&quot;example-5b&quot;&gt;
+    &lt;div id=&quot;content-5b&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-5b {
+  align-items: normal;  /* default - behaves like stretch in this case */
+  display: grid;
+  height: 400px;
+}
+#example-5b {}
+#content-5b {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 80px;">
+    <div>
+      <b id="5c">Grid container, tall content, height 100%</b> - surprisingly,
+      setting <code>height</code> to <code>100%</code> does not contract an
+      element&#x27;s height to the height of its container. The element adjusts
+      to the <b>height of the content</b>.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-5c {
+            align-items: normal; /* default - behaves like stretch in this case */
+            display: grid;
+            height: 400px;
+          }
+          #example-5c {
+            height: 100%;
+          }
+          #content-5c {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-5c">
+          <div class="expl" id="example-5c">
+            <div class="cont" id="content-5c"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-5c</div>
+        <div class="label-expl">#example-5c</div>
+        <div class="label-cont">#content-5c</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-5c&quot;&gt;
+  &lt;div id=&quot;example-5c&quot;&gt;
+    &lt;div id=&quot;content-5c&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-5c {
+  align-items: normal;  /* default - behaves like stretch in this case */
+  display: grid;
+  height: 400px;
+}
+#example-5c {
+  height: 100%;
+}
+#content-5c {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="5d">Grid container, tall content, overflow</b> - elements with tall
+      content in grid containers adjust to the <b>height of the container</b> if
+      <code>overflow</code> is set to something other than <code>visible</code>
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-5d {
+            align-items: normal; /* default - behaves like stretch in this case */
+            display: grid;
+            height: 400px;
+          }
+          #example-5d {
+            overflow: auto;
+          }
+          #content-5d {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-5d">
+          <div class="expl" id="example-5d">
+            <div class="cont" id="content-5d"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-5d</div>
+        <div class="label-expl">#example-5d</div>
+        <div class="label-cont">#content-5d</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-5d&quot;&gt;
+  &lt;div id=&quot;example-5d&quot;&gt;
+    &lt;div id=&quot;content-5d&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-5d {
+  align-items: normal;  /* default - behaves like stretch in this case */
+  display: grid;
+  height: 400px;
+}
+#example-5d {
+  overflow: auto;
+}
+#content-5d {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="5e">Grid container, align-items</b> - if a grid container sets
+      <code>align-items</code> to something other than <code>stretch</code> (the
+      default), then the element will adjust to the
+      <b>height of the content</b>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items"
+        >MDN docs on <code>align-items</code></a
+      >.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-5e {
+            align-items: start;
+            display: grid;
+            height: 400px;
+          }
+          #example-5e {
+          }
+          #content-5e {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-5e">
+          <div class="expl" id="example-5e">
+            <div class="cont" id="content-5e"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-5e</div>
+        <div class="label-expl">#example-5e</div>
+        <div class="label-cont">#content-5e</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-5e&quot;&gt;
+  &lt;div id=&quot;example-5e&quot;&gt;
+    &lt;div id=&quot;content-5e&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-5e {
+  align-items: start;
+  display: grid;
+  height: 400px;
+}
+#example-5e {}
+#content-5e {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 80px;">
+    <div>
+      <b id="5f">Grid container, align-items, tall content</b> - elements with
+      tall content in grid containers expand to the <b>height of the content</b>
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-5f {
+            align-items: start;
+            display: grid;
+            height: 400px;
+          }
+          #example-5f {
+          }
+          #content-5f {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-5f">
+          <div class="expl" id="example-5f">
+            <div class="cont" id="content-5f"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-5f</div>
+        <div class="label-expl">#example-5f</div>
+        <div class="label-cont">#content-5f</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-5f&quot;&gt;
+  &lt;div id=&quot;example-5f&quot;&gt;
+    &lt;div id=&quot;content-5f&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-5f {
+  align-items: start;
+  display: grid;
+  height: 400px;
+}
+#example-5f {}
+#content-5f {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 80px;">
+    <div>
+      <b id="5g">Grid container, align-items, tall content, overflow</b> -
+      elements with tall content in grid containers expand to the
+      <b>height of the content</b> even if <code>overflow</code> is set
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-5g {
+            align-items: start;
+            display: grid;
+            height: 400px;
+          }
+          #example-5g {
+            overflow: auto;
+          }
+          #content-5g {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-5g">
+          <div class="expl" id="example-5g">
+            <div class="cont" id="content-5g"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-5g</div>
+        <div class="label-expl">#example-5g</div>
+        <div class="label-cont">#content-5g</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-5g&quot;&gt;
+  &lt;div id=&quot;example-5g&quot;&gt;
+    &lt;div id=&quot;content-5g&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-5g {
+  align-items: start;
+  display: grid;
+  height: 400px;
+}
+#example-5g {
+  overflow: auto;
+}
+#content-5g {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <h4 id="absolute">Absolute positioning</h4>
+  <div>
+    <div><b id="6a">Absolutely positioned</b> -</div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-6a {
+            display: block; /* default */
+            position: relative;
+            height: 400px;
+          }
+          #example-6a {
+            position: absolute;
+          }
+          #content-6a {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-6a">
+          <div class="expl" id="example-6a">
+            <div class="cont" id="content-6a"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-6a</div>
+        <div class="label-expl">#example-6a</div>
+        <div class="label-cont">#content-6a</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-6a&quot;&gt;
+  &lt;div id=&quot;example-6a&quot;&gt;
+    &lt;div id=&quot;content-6a&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-6a {
+  display: block;  /* default */
+  position: relative;
+  height: 400px;
+}
+#example-6a {
+  position: absolute;
+}
+#content-6a {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 80px;">
+    <div><b id="6b">Absolutely positioned, tall content</b> -</div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-6b {
+            display: block; /* default */
+            position: relative;
+            height: 400px;
+          }
+          #example-6b {
+            position: absolute;
+          }
+          #content-6b {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-6b">
+          <div class="expl" id="example-6b">
+            <div class="cont" id="content-6b"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-6b</div>
+        <div class="label-expl">#example-6b</div>
+        <div class="label-cont">#content-6b</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-6b&quot;&gt;
+  &lt;div id=&quot;example-6b&quot;&gt;
+    &lt;div id=&quot;content-6b&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-6b {
+  display: block;  /* default */
+  position: relative;
+  height: 400px;
+}
+#example-6b {
+  position: absolute;
+}
+#content-6b {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div><b id="6c">Absolutely positioned, height 100%</b> -</div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-6c {
+            display: block; /* default */
+            position: relative;
+            height: 400px;
+          }
+          #example-6c {
+            height: 100%;
+            position: absolute;
+          }
+          #content-6c {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-6c">
+          <div class="expl" id="example-6c">
+            <div class="cont" id="content-6c"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-6c</div>
+        <div class="label-expl">#example-6c</div>
+        <div class="label-cont">#content-6c</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-6c&quot;&gt;
+  &lt;div id=&quot;example-6c&quot;&gt;
+    &lt;div id=&quot;content-6c&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-6c {
+  display: block;  /* default */
+  position: relative;
+  height: 400px;
+}
+#example-6c {
+  height: 100%;
+  position: absolute;
+}
+#content-6c {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div style="margin-bottom: 60px;">
+    <div><b id="6d">Absolutely positioned, height 100%, tall content</b> -</div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-6d {
+            display: block; /* default */
+            position: relative;
+            height: 400px;
+          }
+          #example-6d {
+            height: 100%;
+            position: absolute;
+          }
+          #content-6d {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-6d">
+          <div class="expl" id="example-6d">
+            <div class="cont" id="content-6d"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-6d</div>
+        <div class="label-expl">#example-6d</div>
+        <div class="label-cont">#content-6d</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-6d&quot;&gt;
+  &lt;div id=&quot;example-6d&quot;&gt;
+    &lt;div id=&quot;content-6d&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-6d {
+  display: block;  /* default */
+  position: relative;
+  height: 400px;
+}
+#example-6d {
+  height: 100%;
+  position: absolute;
+}
+#content-6d {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <h4 id="float">Floated elements</h4>
+  <div>
+    <div>
+      <b id="7a">Floated elements</b> - elements that set
+      <code>float</code> adjust to the <b>height of their content</b>.
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/float"
+        >MDN docs on <code>float</code></a
+      >.
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-7a {
+            display: block; /* default */
+            height: 400px;
+          }
+          #example-7a {
+            float: left;
+          }
+          #content-7a {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-7a">
+          <div class="expl" id="example-7a">
+            <div class="cont" id="content-7a"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-7a</div>
+        <div class="label-expl">#example-7a</div>
+        <div class="label-cont">#content-7a</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-7a&quot;&gt;
+  &lt;div id=&quot;example-7a&quot;&gt;
+    &lt;div id=&quot;content-7a&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-7a {
+  display: block;  /* default */
+  height: 400px;
+}
+#example-7a {
+  float: left;
+}
+#content-7a {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div>
+      <b id="7b">Floated elements, tall content</b> - elements that set
+      <code>float</code> adjust to the <b>height of their content</b>
+    </div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-7b {
+            display: block; /* default */
+            height: 400px;
+          }
+          #example-7b {
+            float: left;
+          }
+          #content-7b {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-7b">
+          <div class="expl" id="example-7b">
+            <div class="cont" id="content-7b"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-7b</div>
+        <div class="label-expl">#example-7b</div>
+        <div class="label-cont">#content-7b</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-7b&quot;&gt;
+  &lt;div id=&quot;example-7b&quot;&gt;
+    &lt;div id=&quot;content-7b&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-7b {
+  display: block;  /* default */
+  height: 400px;
+}
+#example-7b {
+  float: left;
+}
+#content-7b {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div><b id="7c">Floated elements, height 100%</b> -</div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-7c {
+            display: block; /* default */
+            height: 400px;
+          }
+          #example-7c {
+            float: left;
+            height: 100%;
+          }
+          #content-7c {
+            height: 80px;
+          }
+        </style>
+        <div class="cntr" id="container-7c">
+          <div class="expl" id="example-7c">
+            <div class="cont" id="content-7c"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-7c</div>
+        <div class="label-expl">#example-7c</div>
+        <div class="label-cont">#content-7c</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-7c&quot;&gt;
+  &lt;div id=&quot;example-7c&quot;&gt;
+    &lt;div id=&quot;content-7c&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-7c {
+  display: block;  /* default */
+  height: 400px;
+}
+#example-7c {
+  float: left;
+  height: 100%;
+}
+#content-7c {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+  <div>
+    <div><b id="7d">Floated elements, height 100%, tall content</b> -</div>
+    <div style="height: 15px; min-height: 15px;"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #container-7d {
+            display: block; /* default */
+            height: 400px;
+          }
+          #example-7d {
+            float: left;
+            height: 100%;
+          }
+          #content-7d {
+            height: 420px;
+          }
+        </style>
+        <div class="cntr" id="container-7d">
+          <div class="expl" id="example-7d">
+            <div class="cont" id="content-7d"></div>
+          </div>
+        </div>
+        <div class="label-cntr">#container-7d</div>
+        <div class="label-expl">#example-7d</div>
+        <div class="label-cont">#content-7d</div>
+      </div>
+      <div style="min-width: 10px; width: 10px;"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;container-7d&quot;&gt;
+  &lt;div id=&quot;example-7d&quot;&gt;
+    &lt;div id=&quot;content-7d&quot; /&gt; 
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre class="code-block"><div class="code-label">CSS</div>#container-7d {
+  display: block;  /* default */
+  height: 400px;
+}
+#example-7d {
+  float: left;
+  height: 100%;
+}
+#content-7d {
+  height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px;"></div>
+  </div>
+</div>

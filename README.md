@@ -1,17 +1,23 @@
-# css-width-cheat-sheet
+# css-cheat-sheets
 
-A script to generate a CSS width cheat sheet.
+Scripts to generate
+
+- [CSS width cheat sheet](https://www.saltycrane.com/blog/2020/04/how-width-set-css/).
+- [CSS height cheat sheet](https://www.saltycrane.com/blog/2021/01/how-height-set-css/).
 
 ## Generate static html file
 
-Using Node.js v12.14
+Using Node.js 14
 
 ```
 $ npm install
 $ npm run render
 ```
 
-View `./css-width-cheat-sheet.html` file
+The following files are generated:
+
+- `./css-width-cheat-sheet.html`
+- `./css-height-cheat-sheet.html`
 
 ## Local development
 

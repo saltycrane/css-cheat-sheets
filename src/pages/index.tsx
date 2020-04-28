@@ -1,17 +1,15 @@
-import CssWidthCheatSheet from "../CssWidthCheatSheet";
-
-export default function ForFasterDev() {
+export default function IndexPage() {
   return (
-    <>
-      <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-        crossOrigin="anonymous"
-      />
-      <div style={{ padding: "4rem" }}>
-        <CssWidthCheatSheet />
-      </div>
-    </>
+    <ul>
+      <li>
+        <a href="/width">/width</a>
+      </li>
+      <li>
+        <a href="/height">/height</a>
+      </li>
+      <li>
+        <a href="/text-orientation">/text-orientation</a>
+      </li>
+    </ul>
   );
 }

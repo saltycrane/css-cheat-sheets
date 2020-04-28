@@ -1,8 +1,11 @@
 {
   "scripts": {
     "dev": "next",
-    "render": "npm run tsc && node dist/render-width-cheat-sheet.js",
-    "tsc": "tsc --project tsconfig.staticrender.json"
+    "tsc": "tsc --project tsconfig.staticrender.json",
+    "width": "node dist/render-width-cheat-sheet.js",
+    "height": "node dist/render-height-cheat-sheet.js",
+    "text-orientation": "node dist/render-text-orientation-cheat-sheet.js",
+    "render": "npm run tsc && npm run text-orientation && npm run height && npm run width"
   },
   "dependencies": {
     "@types/node": "^13.13.2",

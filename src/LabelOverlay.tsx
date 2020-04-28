@@ -43,7 +43,7 @@ export default function LabelOverlay({ children, id }: TProps) {
       {children}
       <div className="label-cntr">{`#container-${id}`}</div>
       <div className="label-expl">{`#example-${id}`}</div>
-      <div className="label-cont">content</div>
+      <div className="label-cont">{`#content-${id}`}</div>
     </div>
   );
 }
