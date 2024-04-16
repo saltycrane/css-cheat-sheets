@@ -8,14 +8,14 @@
     "render": "npm run tsc && npm run text-orientation && npm run height && npm run width"
   },
   "dependencies": {
-    "@types/node": "^13.13.2",
-    "@types/prettier": "^2.0.0",
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.6",
-    "next": "^9.3.5",
-    "prettier": "^2.0.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "typescript": "^3.8.3"
+    "@types/node": "^20.12.7",
+    "@types/prettier": "^3.0.0",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "next": "^14.2.1",
+    "prettier": "^3.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.4.5"
   }
 }

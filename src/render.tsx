@@ -4,12 +4,12 @@ import prettier from "prettier";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 
-export default function render(
+export default async function render(
   RootElement: React.ReactElement,
-  outputFile: string
+  outputFile: string,
 ) {
   let html = ReactDOMServer.renderToStaticMarkup(RootElement);
-  let prettyHtml = prettier.format(html, { parser: "html" });
+  let prettyHtml = await prettier.format(html, { parser: "html" });
   makeRequiredDir(outputFile);
   fs.writeFileSync(outputFile, prettyHtml);
   console.log(`Wrote ${outputFile}`);
