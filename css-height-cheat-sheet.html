@@ -1,85 +1,91 @@
 <div id="cwcs">
   <style>
-    #cwcs a {
-      border-bottom: 1px dotted;
-    }
-    #cwcs ul {
-      margin-left: 10px;
+        #cwcs a {
+          border-bottom: 1px dotted;
+        }
+        #cwcs ul {
+          margin-left: 10px;
+        }
+
+      #cwcs .code-block {
+        border-radius: 0;
+        margin: 0;
+        padding: 5px 10px;
+        position: relative;
+      }
+      #cwcs .code-label {
+        background-color: #fff;
+        border-radius: 4px;
+        color: #6c757d;
+        padding: 2px 5px 0 5px;
+        position: absolute;
+        right: 4px;
+        top: 2px;
+      }
+
+      #cwcs .flex-row {
+        align-items: flex-start;
+        display: flex;
+      }
+
+      .label-overlay {
+        position: relative;
+      }
+      .label-cntr {
+        background-color: #fff;
+        color: #6c757d;
+        left: 5px;
+        padding: 0 2.5px;
+        position: absolute;
+        top: -11px;
+      }
+      .label-expl {
+        background-color: #fff;
+        color: #0d6efd;
+        left: 26px;
+        padding: 0 2.5px;
+        position: absolute;
+        top: 11px;
+      }
+      .label-cont {
+        background-color: #fff;
+        color: #6c757d;
+        left: 47px;
+        padding: 0 2.5px;
+        position: absolute;
+        top: 31px;
+      }
+
+      .cntr {
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        padding: 20px;
+        width: 200px;
+      }
+      .cont {
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        display: block;
+        height: 20px;
+        width: 100px;
+      }
+      .expl {
+        background-color: #fff;
+        border: 1px solid #0d6efd;
+        padding: 20px;
+      }
+      .sibling-tbl-cell {
+        padding: 4px 8px;
+        vertical-align: top;
+        width: 200px;
+      }
     }
 
-    #cwcs .code-block {
-      border-radius: 0;
-      margin: 0;
-      padding: 5px 10px;
-      position: relative;
-    }
-    #cwcs .code-label {
-      background-color: #fff;
-      border-radius: 4px;
-      color: #6c757d;
-      padding: 2px 5px 0 5px;
-      position: absolute;
-      right: 4px;
-      top: 2px;
-    }
-
-    #cwcs .flex-row {
-      align-items: flex-start;
-      display: flex;
-    }
-
-    .label-overlay {
-      position: relative;
-    }
-    .label-cntr {
-      background-color: #fff;
-      color: #6c757d;
-      left: 5px;
-      padding: 0 2.5px;
-      position: absolute;
-      top: -11px;
-    }
-    .label-expl {
-      background-color: #fff;
-      color: #0d6efd;
-      left: 26px;
-      padding: 0 2.5px;
-      position: absolute;
-      top: 11px;
-    }
-    .label-cont {
-      background-color: #fff;
-      color: #6c757d;
-      left: 47px;
-      padding: 0 2.5px;
-      position: absolute;
-      top: 31px;
-    }
-
-    .cntr {
-      background-color: #fff;
-      border: 1px solid #ced4da;
-      padding: 20px;
-      width: 200px;
-    }
-    .cont {
-      background-color: #fff;
-      border: 1px solid #ced4da;
-      display: block;
-      height: 20px;
-      width: 100px;
-    }
-    .expl {
-      background-color: #fff;
-      border: 1px solid #0d6efd;
-      padding: 20px;
-    }
-
-    #cwcs .stack {
-      display: grid;
-      grid-gap: 10px;
-      justify-items: start;
-    }
+      #cwcs .stack {
+        display: grid;
+        grid-gap: 10px;
+        justify-items: start;
+      }
   </style>
   <p>
     Here are some CSS experiments to test when elements adjust to the height of
@@ -107,6 +113,7 @@
     <li>elements in <a href="#5b">grid containers with tall content</a></li>
     <li>elements that are <a href="#6a">absolutely positioned</a></li>
     <li>elements that are <a href="#7a">floated</a></li>
+    <li>elements in <a href="#8a">table cell containers</a></li>
   </ul>
   <div>
     Some elements can be made to adjust to the
@@ -115,11 +122,13 @@
   <ul>
     <li>
       setting <code>height</code> to <code>100%</code> for elements in
-      <a href="#1c">block containers</a>, elements in
+      <a href="#1c">block containers</a>,
       <a href="#4c">flex column containers</a>,
-      <a href="#6c">absolutely positioned elements</a>, and
-      <a href="#7c">floated elements</a>. (Note: it does not have an effect for
-      elements in <a href="#5c">grid containers</a>.)
+      <a href="#6c">absolutely positioned elements</a>,
+      <a href="#7c">floated elements</a>, and
+      <a href="#8b">table cell containers with an explicit height set</a>.
+      (Note: it does not have an effect for elements in
+      <a href="#5c">grid containers</a>.)
     </li>
     <li>
       setting <code>flex-grow</code> for elements in
@@ -147,23 +156,29 @@
     Some miscellaneous cases:
     <ul>
       <li>
+        elements in
+        <a href="#4f">flex column containers with <code>flex-grow</code> set</a>
+        expand to the height of their content for tall content
+      </li>
+      <li>
+        for elements in <a href="#5c">grid containers</a>, setting
+        <code>height</code> to <code>100%</code> does NOT limit their height by
+        the height of their container
+      </li>
+      <li>
         for elements in <a href="#5d">grid containers</a>, setting
         <code>overflow</code> limits an element&#x27;s height to the height of
         its container for tall content
       </li>
       <li>
-        <a href="#4f">flex column containers with <code>flex-grow</code> set</a>
-        expand to the height of their content for tall content
+        for elements in <a href="#5g">grid containers</a>, setting
+        <code>overflow</code> has no effect when <code>align-items</code> is set
       </li>
       <li>
-        <a href="#5c">elements in grid containers</a> setting
-        <code>height</code> to <code>100%</code> are NOT limited by the height
-        of their container
-      </li>
-      <li>
-        setting <code>overflow</code> has no effect for
-        <a href="#5g">elements in grid containers</a> when
-        <code>align-items</code> is set
+        for elements in <a href="#8c">table cell containers</a>, setting
+        <code>height</code> to <code>100%</code> does NOT expand an
+        element&#x27;s height to the height of the table cell container if the
+        height of the table cell container is not explicitly set
       </li>
     </ul>
   </div>
@@ -195,7 +210,7 @@
   <h4 id="block">Block containers</h4>
   <div>
     <div>
-      <b id="1a">Block containers</b> - elements in block containers adjust to
+      <b id="1a">Block container</b> - elements in block containers adjust to
       the <b>height of their content</b> by default
     </div>
     <div style="height: 15px; min-height: 15px"></div>
@@ -244,7 +259,7 @@
   </div>
   <div style="margin-bottom: 80px">
     <div>
-      <b id="1b">Block containers, tall content</b> - elements in block
+      <b id="1b">Block container, tall content</b> - elements in block
       containers adjust to the <b>height of their content</b> even when the
       content is taller than the container
     </div>
@@ -294,8 +309,8 @@
   </div>
   <div>
     <div>
-      <b id="1c">Block elements, height 100%</b> - block elements expand to the
-      <b>height of their container</b> if height is set to 100%
+      <b id="1c">Block container, height 100%</b> - elements in block containers
+      expand to the <b>height of their container</b> if height is set to 100%
     </div>
     <div style="height: 15px; min-height: 15px"></div>
     <div class="flex-row">
@@ -346,8 +361,9 @@
   </div>
   <div style="margin-bottom: 60px">
     <div>
-      <b id="1d">Block elements, tall content, height 100%</b> - block elements
-      contract to the <b>height of their container</b> if height is set to 100%
+      <b id="1d">Block container, tall content, height 100%</b> - elements in
+      block containers contract to the <b>height of their container</b> if
+      height is set to 100%
     </div>
     <div style="height: 15px; min-height: 15px"></div>
     <div class="flex-row">
@@ -1695,7 +1711,7 @@
     </div>
     <div style="height: 30px; min-height: 30px"></div>
   </div>
-  <div>
+  <div style="margin-bottom: 80px">
     <div><b id="7d">Floated elements, height 100%, tall content</b> -</div>
     <div style="height: 15px; min-height: 15px"></div>
     <div class="flex-row">
@@ -1741,6 +1757,221 @@
 }
 #content-7d {
   height: 420px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px"></div>
+  </div>
+  <h4 id="table">Table cell containers</h4>
+  <div>
+    <div>
+      <b id="8a">Table cell container</b> - elements in table cell containers
+      (<code>td</code> and <code>th</code>) adjust to the
+      <b>height of their content</b> by default
+    </div>
+    <div style="height: 15px; min-height: 15px"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #td-container-8a {
+            /* td element */
+            vertical-align: top;
+          }
+          #example-8a {
+          }
+          #content-8a {
+            height: 80px;
+          }
+        </style>
+        <table class="table-bordered">
+          <tbody>
+            <tr>
+              <td class="cntr" id="td-container-8a">
+                <div class="expl" id="example-8a">
+                  <div class="cont" id="content-8a"></div>
+                </div>
+              </td>
+              <td class="sibling-tbl-cell">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="label-cntr">#td-container-8a</div>
+        <div class="label-expl">#example-8a</div>
+        <div class="label-cont">#content-8a</div>
+      </div>
+      <div style="min-width: 10px; width: 10px"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;td-container-8a&quot;&gt;
+  &lt;div id=&quot;example-8a&quot;&gt;
+    &lt;div id=&quot;content-8a&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre
+          class="code-block"
+        ><div class="code-label">CSS</div>#td-container-8a {
+  /* td element */
+  vertical-align: top;
+}
+#example-8a {}
+#content-8a {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px"></div>
+  </div>
+  <div>
+    <div>
+      <b id="8b"
+        >Table cell container, height 100%, explicit table cell height</b
+      >
+      - elements in table cell containers (<code>td</code> and <code>th</code>)
+      expand to the <b>height of their container</b> if height is set to 100%
+      and the table cell container has an explicit height set
+    </div>
+    <div style="height: 15px; min-height: 15px"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #td-container-8b {
+            /* td element */
+            vertical-align: top;
+            height: 400px;
+          }
+          #example-8b {
+            height: 100%;
+          }
+          #content-8b {
+            height: 80px;
+          }
+        </style>
+        <table class="table-bordered">
+          <tbody>
+            <tr>
+              <td class="cntr" id="td-container-8b">
+                <div class="expl" id="example-8b">
+                  <div class="cont" id="content-8b"></div>
+                </div>
+              </td>
+              <td class="sibling-tbl-cell">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="label-cntr">#td-container-8b</div>
+        <div class="label-expl">#example-8b</div>
+        <div class="label-cont">#content-8b</div>
+      </div>
+      <div style="min-width: 10px; width: 10px"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;td-container-8b&quot;&gt;
+  &lt;div id=&quot;example-8b&quot;&gt;
+    &lt;div id=&quot;content-8b&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre
+          class="code-block"
+        ><div class="code-label">CSS</div>#td-container-8b {
+  /* td element */
+  vertical-align: top;
+  height: 400px;
+}
+#example-8b {
+  height: 100%;
+}
+#content-8b {
+  height: 80px;
+}</pre>
+      </div>
+    </div>
+    <div style="height: 30px; min-height: 30px"></div>
+  </div>
+  <div>
+    <div>
+      <b id="8c"
+        >Table cell container, height 100%, table cell height not set</b
+      >
+      - surprisingly, setting <code>height</code> to <code>100%</code> does not
+      expand an element&#x27;s height to the height of a table cell container
+      (<code>td</code> and <code>th</code>) if a height for the table cell is
+      not explicitly set. The element adjusts to the
+      <b>height of the content</b>.
+    </div>
+    <div style="height: 15px; min-height: 15px"></div>
+    <div class="flex-row">
+      <div class="label-overlay">
+        <style>
+          #td-container-8c {
+            /* td element */
+            vertical-align: top;
+          }
+          #example-8c {
+            height: 100%;
+          }
+          #content-8c {
+            height: 80px;
+          }
+        </style>
+        <table class="table-bordered">
+          <tbody>
+            <tr>
+              <td class="cntr" id="td-container-8c">
+                <div class="expl" id="example-8c">
+                  <div class="cont" id="content-8c"></div>
+                </div>
+              </td>
+              <td class="sibling-tbl-cell">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="label-cntr">#td-container-8c</div>
+        <div class="label-expl">#example-8c</div>
+        <div class="label-cont">#content-8c</div>
+      </div>
+      <div style="min-width: 10px; width: 10px"></div>
+      <div class="stack">
+        <pre
+          class="code-block"
+        ><div class="code-label">HTML</div>&lt;div id=&quot;td-container-8c&quot;&gt;
+  &lt;div id=&quot;example-8c&quot;&gt;
+    &lt;div id=&quot;content-8c&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <pre
+          class="code-block"
+        ><div class="code-label">CSS</div>#td-container-8c {
+  /* td element */
+  vertical-align: top;
+}
+#example-8c {
+  height: 100%;
+}
+#content-8c {
+  height: 80px;
 }</pre>
       </div>
     </div>

@@ -47,3 +47,14 @@ export default function LabelOverlay({ children, id }: TProps) {
     </div>
   );
 }
+
+export function TableCellLabelOverlay({ children, id }: TProps) {
+  return (
+    <div className="label-overlay">
+      {children}
+      <div className="label-cntr">{`#td-container-${id}`}</div>
+      <div className="label-expl">{`#example-${id}`}</div>
+      <div className="label-cont">{`#content-${id}`}</div>
+    </div>
+  );
+}

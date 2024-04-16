@@ -2,7 +2,10 @@ import React from "react";
 
 import { codeBlockCss } from "./CodeBlock";
 import { flexRowCss } from "./FlexRow";
-import HeightExample, { heightExamplePageCss } from "./HeightExample";
+import HeightExample, {
+  TableCellHeightExample,
+  heightExamplePageCss,
+} from "./HeightExample";
 import { labelOverlayPageCss } from "./LabelOverlay";
 import { stackCss } from "./Stack";
 
@@ -69,6 +72,9 @@ function CssHeightCheatSheet() {
         <li>
           elements that are <a href="#7a">floated</a>
         </li>
+        <li>
+          elements in <a href="#8a">table cell containers</a>
+        </li>
       </ul>
 
       <div>
@@ -78,11 +84,13 @@ function CssHeightCheatSheet() {
       <ul>
         <li>
           setting <code>height</code> to <code>100%</code> for elements in{" "}
-          <a href="#1c">block containers</a>, elements in{" "}
+          <a href="#1c">block containers</a>,{" "}
           <a href="#4c">flex column containers</a>,{" "}
-          <a href="#6c">absolutely positioned elements</a>, and{" "}
-          <a href="#7c">floated elements</a>. (Note: it does not have an effect
-          for elements in <a href="#5c">grid containers</a>.)
+          <a href="#6c">absolutely positioned elements</a>,{" "}
+          <a href="#7c">floated elements</a>, and{" "}
+          <a href="#8b">table cell containers with an explicit height set</a>.
+          (Note: it does not have an effect for elements in{" "}
+          <a href="#5c">grid containers</a>.)
         </li>
         <li>
           setting <code>flex-grow</code> for elements in{" "}
@@ -113,25 +121,32 @@ function CssHeightCheatSheet() {
         Some miscellaneous cases:
         <ul>
           <li>
-            for elements in <a href="#5d">grid containers</a>, setting{" "}
-            <code>overflow</code> limits an element's height to the height of
-            its container for tall content
-          </li>
-          <li>
+            elements in{" "}
             <a href="#4f">
               flex column containers with <code>flex-grow</code> set
             </a>{" "}
             expand to the height of their content for tall content
           </li>
           <li>
-            <a href="#5c">elements in grid containers</a> setting{" "}
-            <code>height</code> to <code>100%</code> are NOT limited by the
-            height of their container
+            for elements in <a href="#5c">grid containers</a>, setting{" "}
+            <code>height</code> to <code>100%</code> does NOT limit their height
+            by the height of their container
           </li>
           <li>
-            setting <code>overflow</code> has no effect for{" "}
-            <a href="#5g">elements in grid containers</a> when{" "}
-            <code>align-items</code> is set
+            for elements in <a href="#5d">grid containers</a>, setting{" "}
+            <code>overflow</code> limits an element's height to the height of
+            its container for tall content
+          </li>
+          <li>
+            for elements in <a href="#5g">grid containers</a>, setting{" "}
+            <code>overflow</code> has no effect when <code>align-items</code> is
+            set
+          </li>
+          <li>
+            for elements in <a href="#8c">table cell containers</a>, setting{" "}
+            <code>height</code> to <code>100%</code> does NOT expand an
+            element's height to the height of the table cell container if the
+            height of the table cell container is not explicitly set
           </li>
         </ul>
       </div>
@@ -166,7 +181,7 @@ function CssHeightCheatSheet() {
       <h4 id="block">Block containers</h4>
 
       <HeightExample
-        heading="Block containers"
+        heading="Block container"
         description={
           <>
             elements in block containers adjust to the{" "}
@@ -185,7 +200,7 @@ function CssHeightCheatSheet() {
       />
 
       <HeightExample
-        heading="Block containers, tall content"
+        heading="Block container, tall content"
         description={
           <>
             elements in block containers adjust to the{" "}
@@ -206,11 +221,11 @@ function CssHeightCheatSheet() {
       />
 
       <HeightExample
-        heading="Block elements, height 100%"
+        heading="Block container, height 100%"
         description={
           <>
-            block elements expand to the <b>height of their container</b> if
-            height is set to 100%
+            elements in block containers expand to the{" "}
+            <b>height of their container</b> if height is set to 100%
           </>
         }
         id="1c"
@@ -227,11 +242,11 @@ function CssHeightCheatSheet() {
       />
 
       <HeightExample
-        heading="Block elements, tall content, height 100%"
+        heading="Block container, tall content, height 100%"
         description={
           <>
-            block elements contract to the <b>height of their container</b> if
-            height is set to 100%
+            elements in block containers contract to the{" "}
+            <b>height of their container</b> if height is set to 100%
           </>
         }
         id="1d"
@@ -798,6 +813,78 @@ function CssHeightCheatSheet() {
         `}
         contentCss={`
           height: 420px;
+        `}
+        marginBottom={80}
+      />
+
+      {/* Table elements */}
+      <h4 id="table">Table cell containers</h4>
+
+      <TableCellHeightExample
+        heading="Table cell container"
+        description={
+          <>
+            elements in table cell containers (<code>td</code> and{" "}
+            <code>th</code>) adjust to the <b>height of their content</b> by
+            default
+          </>
+        }
+        id="8a"
+        containerCss={`
+          /* td element */
+          vertical-align: top;
+        `}
+        exampleCss={``}
+        contentCss={`
+          height: 80px;
+        `}
+      />
+
+      <TableCellHeightExample
+        heading="Table cell container, height 100%, explicit table cell height"
+        description={
+          <>
+            elements in table cell containers (<code>td</code> and{" "}
+            <code>th</code>) expand to the <b>height of their container</b> if
+            height is set to 100% and the table cell container has an explicit
+            height set
+          </>
+        }
+        id="8b"
+        containerCss={`
+          /* td element */
+          vertical-align: top;
+          height: 400px;
+        `}
+        exampleCss={`
+          height: 100%;
+        `}
+        contentCss={`
+          height: 80px;
+        `}
+      />
+
+      <TableCellHeightExample
+        heading="Table cell container, height 100%, table cell height not set"
+        description={
+          <>
+            surprisingly, setting <code>height</code> to <code>100%</code> does
+            not expand an element's height to the height of a table cell
+            container (<code>td</code> and <code>th</code>) if a height for the
+            table cell is not explicitly set. The element adjusts to the{" "}
+            <b>height of the content</b>.
+          </>
+        }
+        id="8c"
+        containerCss={`
+          /* td element */
+          vertical-align: top;
+        `}
+        exampleCss={`
+          height: 100%;
+        `}
+        contentCss={`
+          height: 80px;
         `}
       />
     </div>
