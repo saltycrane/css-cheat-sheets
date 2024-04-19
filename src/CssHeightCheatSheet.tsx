@@ -872,7 +872,15 @@ function CssHeightCheatSheet() {
             not expand an element's height to the height of a table cell
             container (<code>td</code> and <code>th</code>) if a height for the
             table cell is not explicitly set. The element adjusts to the{" "}
-            <b>height of the content</b>.
+            <b>height of the content</b>. Maybe the fifth bullet in the{" "}
+            <a href="https://wiki.csswg.org/ideas/mistakes">
+              CSSWG's "Incomplete List of Mistakes in CSS"
+            </a>{" "}
+            explains this:{" "}
+            <em>
+              Percentage heights should be calculated against fill-available
+              rather than being undefined in auto situations.
+            </em>
           </>
         }
         id="8c"

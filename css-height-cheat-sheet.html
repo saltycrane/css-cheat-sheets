@@ -1912,7 +1912,15 @@
       expand an element&#x27;s height to the height of a table cell container
       (<code>td</code> and <code>th</code>) if a height for the table cell is
       not explicitly set. The element adjusts to the
-      <b>height of the content</b>.
+      <b>height of the content</b>. Maybe the fifth bullet in the
+      <a href="https://wiki.csswg.org/ideas/mistakes"
+        >CSSWG&#x27;s &quot;Incomplete List of Mistakes in CSS&quot;</a
+      >
+      explains this:
+      <em
+        >Percentage heights should be calculated against fill-available rather
+        than being undefined in auto situations.</em
+      >
     </div>
     <div style="height: 15px; min-height: 15px"></div>
     <div class="flex-row">
